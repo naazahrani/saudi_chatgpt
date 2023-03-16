@@ -26,7 +26,6 @@ def chatgpt(prompt, api_key, customer_id):
   print(data.decode("utf-8"))
 
   ans = json.loads(data)
-  # print(ans["choices"][0]["message"]["content"][::-1])
   return ans["choices"][0]["message"]["content"]
 
 
