@@ -69,10 +69,13 @@ def record_audio(chunk=1024, fs=44100, save_audio=False, audio_name="output"):
     return frames
     
 def generate_audio(text, filename):
+    resp = {}
+    resp["text"] = text
     text = tashkeel(text)
     wave = model_tts.tts(text)
     torchaudio.save(f"static/audios/{filename}.wav", wave.unsqueeze(0), 22050)
-    return 200
+    resp["status"] = 200
+    return resp
 
 if __name__ == "__main__":
     generate_audio("كيف يمكنني المساعدة؟ يرجى توضيح ذلك أكثر حتى أتمكن من تقديم المساعدة المناسبة", "foo")

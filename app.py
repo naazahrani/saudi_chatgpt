@@ -18,8 +18,8 @@ def index():
         
         try:
             res = pipeline()
-            if res == 200:
-                message = Markup(res)
+            if res["status"] == 200:
+                message = Markup(res["text"])
                 return render_template('home.html', message=message)
                 
         except Exception as e:

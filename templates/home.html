@@ -59,9 +59,11 @@
 
     {% if message %}
     <div style="margin-top: 100px">
-    <audio controls>
-        <source src="/static/audios/latest_audio.wav" type="audio/wav">
-    </audio>
+        <audio controls>
+            <source src="/static/audios/latest_audio.wav" type="audio/wav">
+        </audio>
+    </div>
+    <div style="font-size:20px; color:#2da6c4; font-weight:bold; background-color:rgba(21, 22, 22, 0.4);">{{ message }}
     </div>
     {% endif %}
 
