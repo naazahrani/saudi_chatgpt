@@ -47,14 +47,20 @@
             <br/><i class="fas fa-robot"></i>
         </div>
     </div>
-    <a class="btn-floating btn-large waves-effect waves-light red pulse" >
-        <i class="small material-icons"></i>
-    </a>
+    <form method="POST">
+        <button class="btn-floating btn-large waves-effect waves-light red pulse" name="button" id="myButton">
+            <i class="small material-icons"></i>
+        </button>
+    </form>
+    
+    </br>
+    </br>
+    {{message}}
+    
 
+   
     
-    
-    </body>
-    </html>
+
 
 
 
@@ -68,6 +74,16 @@
     <script src="/static/Scripts/js/metisMenu/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/static/Scripts/js/sb-admin-2.min.js"></script>
+
+    <script>
+        function send_audio() {
+            data = "I want to send this to backend"
+            document.getElementById("myButton").value = data;
+
+        }
+    </script>
+
+
 
 
 

@@ -62,6 +62,7 @@ def chatgpt(prompt):
   return ans["choices"][0]["message"]["content"]
 
 def whisper_api(filename):
+  record_audio(save_audio=True)
 
   url = "https://experimental.willow.vectara.io/v1/audio/transcriptions"
 
@@ -79,13 +80,14 @@ def whisper_api(filename):
   return response.text
 
 
-record_audio(save_audio=True)
 
-print(whisper_api())
+print(whisper_api("output"))
 
 # return a response upon call start
 
 def pipeline():
+  """
+  """
   
 # print(classify_intent_extract_entities(" i want to book an appointment"))
 # classify_intent_extract_entities_parser(classify_intent_extract_entities(" i want to book an appointment"))
