@@ -5,8 +5,8 @@ from utils import classify_intent_extract_entities_parser
 from audio import record_audio
 
 conn = http.client.HTTPSConnection("experimental.willow.vectara.io")
-customer_id = "2702570306"
-api_key = "zqt_oRXzQgfyo2zWb80GcaNoaLrbSU58480yIJSBrg"
+api_key = "zqt_luPhYvx4vwvktQg1xkgrbpeCbqv1LGak1QfrNQ"
+customer_id = "2531516770"
 
 def classify_intent_extract_entities(message):
   payload = json.dumps({
