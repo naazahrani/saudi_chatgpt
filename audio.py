@@ -1,9 +1,11 @@
 import pyaudio
 import wave
+import audioop
 
-def generate_audio(chunk=1024, fs=44100, save_audio=False):
+def record_audio(chunk=1024, fs=44100, save_audio=False):
     
     """_summary_
+    THRESHOLD: controls the threshold of to decide if a frame is a silent frame
     fs: sampling rate
     Returns:
         _type_: _description_
@@ -12,6 +14,7 @@ def generate_audio(chunk=1024, fs=44100, save_audio=False):
     channels=2
     sample_format = pyaudio.paInt16  # 16 bits per sample
     filename = "output.wav"
+    THRESHOLD = 1000  # Adjust this value as needed
 
 
     audio = pyaudio.PyAudio()  # Create an interface to PortAudio
@@ -24,20 +27,17 @@ def generate_audio(chunk=1024, fs=44100, save_audio=False):
                     frames_per_buffer=chunk,
                     input=True)
     frames = []
-    stop = False
-    while not stop:
+    silence_frames = 0
+    while silence_frames < 100:  # Adjust this value as needed
         data = stream.read(chunk)
         frames.append(data)
 
-        # Check for stop condition
-        # Here, we check if the user has typed "stop" and pressed enter
-        if len(frames) % (fs // chunk) == 0:
-            user_input = input("Press enter to continue recording, or type 'stop' to stop recording.")
-            if user_input.lower() == "stop":
-                stop = True
-
-    print("Finished recording.")
-
+        # Check if audio input is below threshold value
+        rms = audioop.rms(data, 2)
+        if rms < THRESHOLD:
+            silence_frames += 1
+        else:
+            silence_frames = 0
     # Stop and close microphone stream
     stream.stop_stream()
     stream.close()
@@ -57,4 +57,3 @@ def generate_audio(chunk=1024, fs=44100, save_audio=False):
     
     return frames
     
-generate_audio(save_audio=True)
