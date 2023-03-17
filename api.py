@@ -3,6 +3,8 @@ import requests
 import json
 from utils import classify_intent_extract_entities_parser
 from audio import record_audio, generate_audio
+import arabic_reshaper
+from bidi.algorithm import get_display
 
 conn = http.client.HTTPSConnection("experimental.willow.vectara.io")
 api_key = "zqt_luPhYvx4vwvktQg1xkgrbpeCbqv1LGak1QfrNQ"
@@ -86,10 +88,11 @@ def whisper_api(filename):
 def pipeline():
   latest_audio='latest_audio'
   record_audio(audio_name="latest_audio", save_audio=True)
-  print("to whisper api")
+  print("to whisper")
   text = whisper_api(latest_audio)
   print("to chatgpt")
-  res = chatgpt(text)
-  # print("to tts")
-  # res = generate_audio(text, latest_audio)
+  text = chatgpt(text)
+  # text = arabic_reshaper.reshape(text)
+  # text = get_display(text) 
+  res = generate_audio(text, latest_audio)
   return res

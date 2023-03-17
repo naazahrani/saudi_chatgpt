@@ -6,11 +6,9 @@ import sys
 sys.path.append("external/tts")
 from external.tts.models.tacotron2 import Tacotron2Wave
 import torchaudio
-import mishkal.tashkeel
 
 from tashkeel import tashkeel
 
-vocalizer = mishkal.tashkeel.TashkeelClass()
 model_tts = Tacotron2Wave('pretrained/tactron2_ar_adv.pth')
 model_tts = model_tts.cuda()
 
@@ -71,7 +69,10 @@ def record_audio(chunk=1024, fs=44100, save_audio=False, audio_name="output"):
     return frames
     
 def generate_audio(text, filename):
-    text = vocalizer.tashkeel(text)
+    text = tashkeel(text)
     wave = model_tts.tts(text)
-    torchaudio.save(f"{filename}.wav", wave.unsqueeze(0), 22050)
+    torchaudio.save(f"static/audios/{filename}.wav", wave.unsqueeze(0), 22050)
     return 200
+
+if __name__ == "__main__":
+    generate_audio("كيف يمكنني المساعدة؟ يرجى توضيح ذلك أكثر حتى أتمكن من تقديم المساعدة المناسبة", "foo")

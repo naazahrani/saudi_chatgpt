@@ -43,6 +43,7 @@
 
             <h6 class="text-light med font-weight-bold"
                 style="font-family: 'Tajawal', sans-serif; color:white; text-align: center;"> v 1.0 </h6>
+                <div id="demo"></div>      
 
             <br /><i class="fas fa-robot"></i>
         </div>
@@ -56,8 +57,10 @@
     </br>
     </br>
 
-    {% if message==200 %}
-    <audio src="/static/audios/latest_audio.wav" type="audio/wav"></audio>
+    {% if message %}
+    <audio controls>
+        <source src="/static/audios/latest_audio.wav" type="audio/wav">
+      </audio> 
     {% endif %}
 
     <!-- partial -->
@@ -82,10 +85,19 @@
 
 
 
-    <audio autoplay>
+    <!-- <audio autoplay>
         <source src="/static/audios/entry_audio.wav" type="audio/wav">
-      </audio>
-      
+      </audio> -->
+      <script>
+        const myTimeout = setTimeout(myGreeting, 500000);
+        function myGreeting() {
+          document.getElementById("demo").innerHTML = "<audio autoplay><source src=\"/static/audios/entry_audio.wav\" type=\"audio/wav\"></audio>"
+          }
+          function myStopFunction() {
+          clearTimeout(myTimeout);
+          }
+      </script>
+
 
 </body>
 
