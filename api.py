@@ -61,13 +61,13 @@ def chatgpt(prompt):
   ans = json.loads(data)
   return ans["choices"][0]["message"]["content"]
 
-def whisper_api():
+def whisper_api(filename):
 
   url = "https://experimental.willow.vectara.io/v1/audio/transcriptions"
 
   payload={'model': 'whisper-1'}
   files=[
-    ('file',('output.wav',open('./saudi_chatgpt/output.wav','rb'),'application/octet-stream'))
+    ('file',(f'{filename}.wav',open(f'./saudi_chatgpt/{filename}.wav','rb'),'application/octet-stream'))
   ]
   headers = {
     'customer-id': customer_id,

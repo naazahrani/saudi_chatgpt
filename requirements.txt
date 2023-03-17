@@ -54,3 +54,7 @@ matplotlib
 fairseq
 transformers
 torchaudio
+twilio
+selenium
+webdriver-manager
+farasapy
