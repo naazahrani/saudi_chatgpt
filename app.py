@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, Markup
 import http.client
+from api import pipeline
 
 app = Flask(__name__)
 
@@ -16,11 +17,13 @@ def index():
 
         
         try:
-            res = "here"
+            res = pipeline()
+            if res == 200:
+                message = Markup(res)
+                return render_template('home.html', message=message)
+                
         except Exception as e:
             print("backend error: ", str(e))
-        message = Markup(res)
-        return render_template('home.html', message=message)
     return render_template('home.html')
 
 # @app.route('/submit', methods=['POST'])

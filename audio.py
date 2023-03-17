@@ -11,7 +11,7 @@ import mishkal.tashkeel
 from tashkeel import tashkeel
 
 vocalizer = mishkal.tashkeel.TashkeelClass()
-model_tts = Tacotron2Wave('pretrained/tacotron2_ar_adv.pth')
+model_tts = Tacotron2Wave('pretrained/tactron2_ar_adv.pth')
 model_tts = model_tts.cuda()
 
 def record_audio(chunk=1024, fs=44100, save_audio=False, audio_name="output"):
@@ -25,7 +25,6 @@ def record_audio(chunk=1024, fs=44100, save_audio=False, audio_name="output"):
     
     channels=2
     sample_format = pyaudio.paInt16  # 16 bits per sample
-    filename = f"{audio_name}.wav"
     THRESHOLD = 1000  # Adjust this value as needed
 
 
@@ -60,7 +59,9 @@ def record_audio(chunk=1024, fs=44100, save_audio=False, audio_name="output"):
     print('Finished recording')
     if save_audio:
     # Save the recorded data as a WAV file
-        wf = wave.open(filename, 'wb')
+        print(audio_name)
+        wf = wave.open(f"static/audios/{audio_name}.wav", 'wb')
+        print(f"static/audios/{audio_name}.wav")
         wf.setnchannels(channels)
         wf.setsampwidth(audio.get_sample_size(sample_format))
         wf.setframerate(fs)

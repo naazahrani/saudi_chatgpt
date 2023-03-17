@@ -62,16 +62,12 @@ def chatgpt(prompt):
   return ans["choices"][0]["message"]["content"]
 
 def whisper_api(filename):
-<<<<<<< HEAD
-  record_audio(save_audio=True)
-
-=======
->>>>>>> 5dcf41d9275ff33d347773bd36600b0927f43b25
   url = "https://experimental.willow.vectara.io/v1/audio/transcriptions"
 
+  print(filename)
   payload={'model': 'whisper-1'}
   files=[
-    ('file',(f'{filename}.wav',open(f'./saudi_chatgpt/{filename}.wav','rb'),'application/octet-stream'))
+    ('file',(f'{filename}.wav',open(f'static/audios/{filename}.wav','rb'),'application/octet-stream'))
   ]
   headers = {
     'customer-id': customer_id,
@@ -84,24 +80,16 @@ def whisper_api(filename):
 
 
 
-<<<<<<< HEAD
-print(whisper_api("output"))
-=======
->>>>>>> 5dcf41d9275ff33d347773bd36600b0927f43b25
 
 # return a response upon call start
 
 def pipeline():
-<<<<<<< HEAD
-  """
-  """
-  
-# print(classify_intent_extract_entities(" i want to book an appointment"))
-# classify_intent_extract_entities_parser(classify_intent_extract_entities(" i want to book an appointment"))
-=======
-  latest_audio='static/audios/latest_audio.wav'
-  record_audio(audio_name="static/audios/latest_audio.wav")
+  latest_audio='latest_audio'
+  record_audio(audio_name="latest_audio", save_audio=True)
+  print("to whisper api")
   text = whisper_api(latest_audio)
-  text = chatgpt(text)
-  resp = generate_audio(text, latest_audio)
->>>>>>> 5dcf41d9275ff33d347773bd36600b0927f43b25
+  print("to chatgpt")
+  res = chatgpt(text)
+  # print("to tts")
+  # res = generate_audio(text, latest_audio)
+  return res

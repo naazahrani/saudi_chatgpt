@@ -55,9 +55,10 @@
     
     </br>
     </br>
-    {{message}}
-    
 
+    {% if message==200 %}
+    <audio src="/static/audios/latest_audio.wav" type="audio/wav"></audio>
+    {% endif %}
 
     <!-- partial -->
     <!-- jQuery Version 1.11.0 -->
