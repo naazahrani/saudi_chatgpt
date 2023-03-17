@@ -8,11 +8,13 @@ from external.tts.models.tacotron2 import Tacotron2Wave
 import torchaudio
 import mishkal.tashkeel
 
+from tashkeel import tashkeel
+
 vocalizer = mishkal.tashkeel.TashkeelClass()
 model_tts = Tacotron2Wave('pretrained/tacotron2_ar_adv.pth')
 model_tts = model_tts.cuda()
 
-def record_audio(chunk=1024, fs=44100, save_audio=False):
+def record_audio(chunk=1024, fs=44100, save_audio=False, audio_name="output"):
     
     """_summary_
     THRESHOLD: controls the threshold of to decide if a frame is a silent frame
@@ -23,7 +25,7 @@ def record_audio(chunk=1024, fs=44100, save_audio=False):
     
     channels=2
     sample_format = pyaudio.paInt16  # 16 bits per sample
-    filename = "output.wav"
+    filename = f"{audio_name}.wav"
     THRESHOLD = 1000  # Adjust this value as needed
 
 
@@ -67,10 +69,7 @@ def record_audio(chunk=1024, fs=44100, save_audio=False):
     
     return frames
     
-def generate_audio(text):
+def generate_audio(text, filename):
     text = vocalizer.tashkeel(text)
     wave = model_tts.tts(text)
-    torchaudio.save("tts_output.wav", wave.unsqueeze(0), 22050)
-    
-
-generate_audio("السلام عليكم يا صديقي")
+    torchaudio.save(f"{filename}.wav", wave.unsqueeze(0), 22050)
