@@ -10,7 +10,6 @@ customer_id = "2531516770"
 
 @app.route('/',  methods=['GET', 'POST'])
 def index():
-<<<<<<< HEAD
     res = ""
     if request.method == 'POST':
         print(request.form['button'])
@@ -22,8 +21,6 @@ def index():
             print("backend error: ", str(e))
         message = Markup(res)
         return render_template('home.html', message=message)
-=======
->>>>>>> 5dcf41d9275ff33d347773bd36600b0927f43b25
     return render_template('home.html')
 
 # @app.route('/submit', methods=['POST'])
