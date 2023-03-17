@@ -82,5 +82,10 @@ def whisper_api():
 record_audio(save_audio=True)
 
 print(whisper_api())
+
+# return a response upon call start
+
+def pipeline():
+  
 # print(classify_intent_extract_entities(" i want to book an appointment"))
 # classify_intent_extract_entities_parser(classify_intent_extract_entities(" i want to book an appointment"))

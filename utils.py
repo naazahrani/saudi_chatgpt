@@ -6,9 +6,6 @@ def classify_intent_extract_entities_parser(response):
     intent_match = re.search(pattern, response)
     intent = intent_match.group(1)
     
-    
-    
-    
     pattern = r"- (\w+):\s*(.+)"
 
     # use regular expression to extract entity lines
@@ -22,3 +19,12 @@ def classify_intent_extract_entities_parser(response):
         entities[entity_key] = entity_value
     
     return intent, entities
+
+def preprocess():
+    """
+    """
+
+def postprocess():
+    """
+    
+    """
