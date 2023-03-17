@@ -1,4 +1,5 @@
 import http.client
+import requests
 import json
 from utils import classify_intent_extract_entities_parser
 from audio import record_audio
@@ -60,7 +61,26 @@ def chatgpt(prompt):
   ans = json.loads(data)
   return ans["choices"][0]["message"]["content"]
 
+def whisper_api():
+
+  url = "https://experimental.willow.vectara.io/v1/audio/transcriptions"
+
+  payload={'model': 'whisper-1'}
+  files=[
+    ('file',('output.wav',open('./saudi_chatgpt/output.wav','rb'),'application/octet-stream'))
+  ]
+  headers = {
+    'customer-id': customer_id,
+    'x-api-key': api_key
+  }
+
+  response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+  return response.text
+
 
 record_audio(save_audio=True)
+
+print(whisper_api())
 # print(classify_intent_extract_entities(" i want to book an appointment"))
 # classify_intent_extract_entities_parser(classify_intent_extract_entities(" i want to book an appointment"))
