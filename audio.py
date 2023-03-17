@@ -1,6 +1,16 @@
 import pyaudio
 import wave
 import audioop
+import sys
+
+sys.path.append("external/tts")
+from external.tts.models.tacotron2 import Tacotron2Wave
+import torchaudio
+import mishkal.tashkeel
+
+vocalizer = mishkal.tashkeel.TashkeelClass()
+model_tts = Tacotron2Wave('pretrained/tacotron2_ar_adv.pth')
+model_tts = model_tts.cuda()
 
 def record_audio(chunk=1024, fs=44100, save_audio=False):
     
@@ -57,3 +67,10 @@ def record_audio(chunk=1024, fs=44100, save_audio=False):
     
     return frames
     
+def generate_audio(text):
+    text = vocalizer.tashkeel(text)
+    wave = model_tts.tts(text)
+    torchaudio.save("tts_output.wav", wave.unsqueeze(0), 22050)
+    
+
+generate_audio("السلام عليكم يا صديقي")

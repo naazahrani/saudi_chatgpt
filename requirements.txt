@@ -37,3 +37,20 @@ tqdm==4.65.0
 types-pytz==2022.7.1.2
 urllib3==1.26.15
 yarl==1.8.2
+pyaudio
+lang-trans
+arabic-pronounce
+inflect == 4.1.0
+numba == 0.48
+pypinyin==0.39.0
+pyworld == 0.2.10
+PyYAML==5.4.1
+tgt == 1.4.4
+tqdm==4.46.1
+unidecode == 1.1.1
+resampy==0.3.1
+gdown
+matplotlib
+fairseq
+transformers
+torchaudio

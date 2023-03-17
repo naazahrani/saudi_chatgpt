@@ -1,5 +1,10 @@
 # saudi_chatgpt
 
+# requirements
+
+torch
+
+pip install -r requirements.txt
 # database
 
 create .env file

@@ -1,0 +1,3 @@
+[submodule "external/tts"]
+	path = external/tts
+	url = https://github.com/nipponjo/tts-arabic-pytorch.git
