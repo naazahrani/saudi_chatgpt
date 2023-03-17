@@ -73,3 +73,4 @@ def generate_audio(text, filename):
     text = vocalizer.tashkeel(text)
     wave = model_tts.tts(text)
     torchaudio.save(f"{filename}.wav", wave.unsqueeze(0), 22050)
+    return 200
