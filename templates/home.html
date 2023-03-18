@@ -25,12 +25,19 @@
     <link href="https://fonts.googleapis.com/css?family=Tajawal&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/static/Content/css/normalize.css">
+
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
 
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+       
+        div.b {
+            margin: 10px 200px;
 
+        }
+        </style>
 
 </head>
 
@@ -44,8 +51,8 @@
             <h6 class="text-light med"
                 style="font-family: 'Tajawal', sans-serif; font-size:25px; color:white; text-align: center;"> v 1.0 </h6>
             <div id="demo"></div>
-
-            <br /><i class="fas fa-robot"></i>
+        </br>
+        </br>
         </div>
     </div>
     <form method="POST">
@@ -54,21 +61,49 @@
         </button>
     </form>
 
-
-    </br>
     </br>
 
-    {% if message %}
+    {% if message or res['id'] == 4 %}
     <div style="margin-top: 100px">
         <audio controls>
             <source src="/static/audios/latest_audio.wav" type="audio/wav">
         </audio>
     </div>
     </br>
-    </br>
-    <div style="font-family: 'Tajawal', sans-serif; font-size:20px; color:#2da6c4; font-weight:bold; background-color:rgba(21, 22, 22, 0.4);">{{ message }}
+    <div class="b" style="font-family: 'Tajawal', sans-serif; font-size:25px; color:#2da6c4; background-color:rgba(21, 22, 22, 0.4);">{{ message }}
     </div>
     {% endif %}
+    </br>
+    {% if res['id'] == 1 %}
+    <div class="b" style="font-family: 'Tajawal', sans-serif; font-size:25px; color:#2da6c4; background-color:rgba(21, 22, 22, 0.4);">آمل الاتصال على
+
+    </div>
+    </br>
+    <div> 
+
+        <button class="btn-floating btn-large waves-effect waves-light green" style="font-size:20px; font-weight:bold;" name="button" id="997">
+            997
+        </button>          
+        <button class="btn-floating btn-large waves-effect waves-light green" style="font-size:20px; font-weight:bold;" name="button" id="997">
+            937
+        </button>
+    </div>
+    {% endif %}
+    <!-- 
+    {% if res['id'] == 2 %}
+        {% for item in res %}
+            {{ item }} </br>
+        {% endfor %}
+    {% endif %}
+    {% if res['id'] == 3 %}
+    {% for item in res %}
+    {{ item }} </br>
+    {% endfor %}
+    {% endif %} -->
+
+    <!-- font-weight:bold;  -->
+
+    
 
     <!-- partial -->
     <!-- jQuery Version 1.11.0 -->
@@ -88,6 +123,8 @@
 
         }
     </script>
+
+
 
 
     <!-- <audio autoplay>

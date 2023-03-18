@@ -3,7 +3,7 @@ import requests
 import json
 from utils import classify_intent_extract_entities_parser
 from audio import record_audio, generate_audio
-import arabic_reshaper
+# import arabic_reshaper
 from bidi.algorithm import get_display
 import re
 
