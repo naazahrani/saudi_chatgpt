@@ -43,6 +43,8 @@ def chatgpt(prompt):
   payload = json.dumps({
   "model": "gpt-3.5-turbo",
   "messages": [
+    {"role": "system",
+     "content": "You are a helpful assistant who only responds to healthcare conversations"},
     {
       "role": "user",
       "content": prompt 
@@ -92,6 +94,7 @@ def pipeline():
   text = whisper_api(latest_audio)
   print("to chatgpt")
   text = chatgpt(text)
+  print(text)
   # text = arabic_reshaper.reshape(text)
   # text = get_display(text) 
   res = generate_audio(text, latest_audio)
