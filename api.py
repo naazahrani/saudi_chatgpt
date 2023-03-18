@@ -93,6 +93,7 @@ def whisper_api(filename):
 # return a response upon call start
 
 def pipeline():
+  resp = {}
   latest_audio='latest_audio'
   record_audio(audio_name="latest_audio", save_audio=True)
   print("to whisper")
@@ -103,9 +104,12 @@ def pipeline():
   text = text.split(":")[-1]
   case = int(re.search(r'\d+', case).group())
   print(text)
-  print(case)  
+  print(case)
   
   # text = arabic_reshaper.reshape(text)
   # text = get_display(text) 
-  res = generate_audio(text, latest_audio)
-  return res
+  resp["text"] = text
+  resp["id"] = case
+  resp["status"] = 200
+  generate_audio(text, latest_audio)
+  return resp
