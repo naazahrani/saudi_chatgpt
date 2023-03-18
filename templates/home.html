@@ -37,12 +37,12 @@
 <body style="font-family: 'Tajawal', sans-serif;">
     <div class="row">
         <div class="col md5">
-            <h1 style="font-family: 'Tajawal', sans-serif; color:white; text-align: center;">
+            <h1 style="font-family: 'Tajawal',  sans-serif; font-size:80px; color:white; text-align: center;">
                 مُعِين</h1>
 
 
-            <h6 class="text-light med font-weight-bold"
-                style="font-family: 'Tajawal', sans-serif; color:white; text-align: center;"> v 1.0 </h6>
+            <h6 class="text-light med"
+                style="font-family: 'Tajawal', sans-serif; font-size:25px; color:white; text-align: center;"> v 1.0 </h6>
             <div id="demo"></div>
 
             <br /><i class="fas fa-robot"></i>
@@ -50,9 +50,10 @@
     </div>
     <form method="POST">
         <button class="btn-floating btn-large waves-effect waves-light red pulse" name="button" id="myButton">
-            <i class="small material-icons"></i>
+            <i class="small material-icons"></i> 
         </button>
     </form>
+
 
     </br>
     </br>
@@ -63,7 +64,9 @@
             <source src="/static/audios/latest_audio.wav" type="audio/wav">
         </audio>
     </div>
-    <div style="font-size:20px; color:#2da6c4; font-weight:bold; background-color:rgba(21, 22, 22, 0.4);">{{ message }}
+    </br>
+    </br>
+    <div style="font-family: 'Tajawal', sans-serif; font-size:20px; color:#2da6c4; font-weight:bold; background-color:rgba(21, 22, 22, 0.4);">{{ message }}
     </div>
     {% endif %}
 
@@ -87,13 +90,11 @@
     </script>
 
 
-
-
     <!-- <audio autoplay>
         <source src="/static/audios/entry_audio.wav" type="audio/wav">
       </audio> -->
     <script>
-        const myTimeout = setTimeout(myGreeting, 500000);
+        const myTimeout = setTimeout(myGreeting, 5000);
         function myGreeting() {
             document.getElementById("demo").innerHTML = "<audio autoplay><source src=\"/static/audios/entry_audio.wav\" type=\"audio/wav\"></audio>"
         }

@@ -5,6 +5,7 @@ from utils import classify_intent_extract_entities_parser
 from audio import record_audio, generate_audio
 import arabic_reshaper
 from bidi.algorithm import get_display
+import re
 
 conn = http.client.HTTPSConnection("experimental.willow.vectara.io")
 api_key = "zqt_luPhYvx4vwvktQg1xkgrbpeCbqv1LGak1QfrNQ"
@@ -44,10 +45,14 @@ def chatgpt(prompt):
   "model": "gpt-3.5-turbo",
   "messages": [
     {"role": "system",
-     "content": "You are a helpful assistant who only responds to healthcare conversations"},
+     "content": "You are a helpful assistant who only responds to healthcare conversations and classify responses into the relevant case number in the form of: 'Resonse: [Arabic Response], Case: [Case Number]"},
+    {
+      "role": "assistant",
+      "content": "You support the following cases: case 1: if a user have the following symptoms  :هلوسة الم شديد، محاولة انتحار، اخذ جرعة زائدة من الادوية او الحبوب، محاول شنق نفس، الاغماء the answer must include the following instruction: انقاذ حياة و اتصال على 997 (الهلال الاحمر) او 937 (وزارة الصحة) case 2: if a user have the following :صداع، لا يستطيع النوم، تعب شديد، التقيؤ و اجوع نفسي  the answer must include the following instruction: هذه حاله طارئة اذهب حالا الى اقرب طوارئ, case 3: if a user have the following :اكتئاب وهو شعورًا متواصلًا بالحزن، وفقدان المتعة، والاهتمام بالأمور المعتادة، ونقص التركيز. او اذا شعر بحزن شديد، عدم رغبة بعمل شيء. و ايضا من الحالات المهمه هي التعامل مع المدمنيني و ضحايا الادمان مهما كانت اشكله مثل ادمان على المخدرات او ادمان التدخين او حتى ادمان المشروبات  the answer must include the following instruction: احجز الان موعد مع اخصائي علاج نفسي "
+    },
     {
       "role": "user",
-      "content": prompt 
+      "content": prompt
     }
     ]
   })
@@ -94,7 +99,14 @@ def pipeline():
   text = whisper_api(latest_audio)
   print("to chatgpt")
   text = chatgpt(text)
+  text, case = text.split(",")
+  text = text.split(":")[-1]
+  case = int(re.search(r'\d+', case).group())
+  
   print(text)
+  print(case)
+  print(type(case))
+  # text = text.split(":")[-1]
   # text = arabic_reshaper.reshape(text)
   # text = get_display(text) 
   res = generate_audio(text, latest_audio)
