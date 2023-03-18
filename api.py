@@ -100,6 +100,7 @@ def pipeline():
   print("to chatgpt")
   text = chatgpt(text)
   text, case = text.split("Case")
+  text = text.split(":")[-1]
   case = int(re.search(r'\d+', case).group())
   print(text)
   print(case)  
